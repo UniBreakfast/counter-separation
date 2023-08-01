@@ -1,0 +1,25 @@
+In this file I will describe possible ways to implement a counter with different ways of separation of concerns.
+
+1. single file: index.js with all the code. It should provide UI with a count and two buttons to increment and decrement the count. Backend should save the current count in a file.
+
+2. single file frontend and single file backend:
+  index.html: will require from backend serving the index.html file itself, providing get current value, increment and decrement endpoints. It should provide UI with a count and two buttons to increment and decrement the count.
+  index.js: will expect from frontend get requests for a page, for the current value, post requests for increment and decrement. It should save the current count in a file.
+
+3. split frontend into:
+  index.html: page entrypoint linking the other files
+  app.js: will provide UI with a count and two buttons to increment and decrement the count, will also make requests to backend.
+
+4. split backend into:
+  index.js: backend entrypoint linking the other files
+  server.js: will expect from frontend get requests for a page, for the current value, post requests for increment and decrement. It should save the current count in a file.
+
+5. split app.js into:
+  app.js: will import and instantiate a Counter class giving it a DOM element to render the UI and a service to make requests to backend.
+  counter.js: will provide a class Counter, which will be a complete solution for the counter, including UI and requests to backend service.
+  service.js: will provide an object with methods to make requests to backend.
+
+6. split server.js into:
+  server.js: will create and start a server, to handle client requests with help of static and api handlers.
+  static.js: should be a function to handle requests for static files.
+  api.js: should be a function to handle requests for api endpoints.
